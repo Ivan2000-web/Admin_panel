@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin panel</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- NAVIGATION SECTION -->
+    <div class="nav">
+      <div class="nav-logo">
+        <p>ПАНЕЛЬ АДМИНИСТРАТОРА</p>
+      </div>
+
+      <div class="account">
+        <img src="img/icon-myaccount 2.svg" alt="Account Icon" />
+        <p>Аккаунт</p>
+      </div>
+    </div>
+
+    <!-- END OF NAVIGATION BAR -->
+
+    <div class="body">
+      <div class="body-left">
+        <div class="admin-name">
+          <img src="img/logo.png" alt="Admin Logo" />
+          <div class="admin-text">
+            <h4>Иван Иванов</h4>
+          </div>
+        </div>
+
+        <div class="logFlex">
+          <div class="dropdown-menu">
+            <ul class="dropList">
+              <li class="dm"><a href="statistics.html">ГЛАВНАЯ</a></li>
+              <li class="dm">
+                <a href="createUser.html">СОЗДАТЬ ПОЛЬЗОВАТЕЛЯ</a>
+              </li>
+              <li class="dm"><a href="all-users.html">ВСЕ ПОЛЬЗОВАТЕЛИ</a></li>
+              <li class="dm"><a href="settings.html">НАСТРОЙКИ</a></li>
+            </ul>
+          </div>
+
+          <div class="logout">
+            <a href="#" class="LinkOut">
+              <h1>Выйти</h1>
+              <i class="bx bx-log-out-circle logOut-icon"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="body-right">
+     <!-- Main content goes here -->  
+     </div>
+
+    <!-- <div class="endfooter">
+      <p>© All rights reserved Vansoft 2024</p>
+    </div> -->
+
+    <script src="js/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $.ajax({
+          url: "statistics.html",
+          type: "GET",
+          success: function (data) {
+            // заменяем содержимое body-right новыми данными
+            $(".body-right").html(data);
+          },
+          error: function () {
+            console.log("Data loading error");
+            alert("Data loading error");
+          },
+        });
+
+        $("a").click(function (e) {
+          e.preventDefault(); 
+          var url = $(this).attr("href"); 
+
+          $.ajax({
+            url: url,
+            type: "GET",
+            success: function (data) {
+              $(".body-right").html(data);
+            },
+            error: function () {
+              console.log("Data loading error");
+              alert("Data loading error");
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
